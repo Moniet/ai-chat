@@ -1,0 +1,53 @@
+{
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "name": "Aiko",
+  "background": {
+    "service_worker": "src/background/background.ts",
+    "type": "module",
+    "persistent": true
+  },
+  "action": {},
+  "permissions": [
+    "activeTab",
+    "unlimitedStorage",
+    "storage",
+    "tabs",
+    "sidePanel",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "http://localhost:3002/*",
+    "http://localhost:3001/*",
+    "https://api.openai.com/*",
+    "https://api.fireworks.com/*",
+    "https://api.claude.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "content_scripts": [
+    {
+      "js": ["src/content-scripts/content-script.ts"],
+      "matches": ["https://*/*"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": ["https://*/*"]
+    }
+  ],
+  "commands": {
+    "toggle-sidebar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
+      },
+      "global": true,
+      "description": "Toggle the Aiiko Sidebar"
+    }
+  }
+}

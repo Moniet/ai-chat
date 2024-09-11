@@ -1,0 +1,159 @@
+.message-bubble li {
+  margin-top: 0.625rem;
+}
+
+.message-bubble ol,
+.message-bubble ul,
+.message-bubble pre,
+.message-bubble p:not(:first-of-type) {
+  margin-top: 1.25rem;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282c34;
+  color: #abb2bf;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+.message-bubble {
+  margin-top: 2rem;
+}
+
+.message-bubble h2 {
+  margin-top: 1.5rem;
+}
+.message-bubble h3,
+.message-bubble h4,
+.message-bubble h5,
+.message-bubble h6 {
+  margin-top: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+img {
+  margin: 2rem 0;
+}
+
+th,
+td {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+.message-bubble h1 {
+  font-size: 2.5em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.message-bubble h2 {
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.message-bubble h3 {
+  font-size: 1.5em;
+}
+
+.message-bubble h4 {
+  font-size: 1.25em;
+}
+
+.message-bubble h5 {
+  font-size: 1em;
+}
+
+.message-bubble h6 {
+  font-size: 0.875em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 2em 0;
+}
+
+.message-bubble pre code {
+  margin: 0;
+}

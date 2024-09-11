@@ -1,0 +1,38 @@
+@keyframes aiiko-slide-in {
+  from {
+    transform: translate(110%, 0);
+  }
+  to {
+    transform: translate(0%, 0);
+  }
+}
+
+@keyframes aiiko-slide-out {
+  from {
+    transform: translate(0%, 0);
+  }
+  to {
+    transform: translate(110%, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.aiiko-fade-in {
+  animation: fade-in 0.4s ease-in-out forwards;
+}
+
+.aiiko-slide-in {
+  animation: aiiko-slide-in 0.2s ease-in-out forwards;
+}
+
+.aiiko-slide-out {
+  animation: aiiko-slide-out 0.2s ease-in-out forwards;
+}
