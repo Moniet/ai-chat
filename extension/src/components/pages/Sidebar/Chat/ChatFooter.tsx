@@ -1,24 +1,23 @@
 import { Button } from "@/components/design-system/button"
-import { Input } from "@/components/design-system/input"
-import { Textarea } from "@/components/design-system/textarea"
 import { storage } from "@/lib/storage"
-import { debounce } from "lodash"
-import { Mic, Mic2, SendIcon } from "lucide-react"
-import React, { KeyboardEventHandler, useEffect, useRef, useState } from "react"
-import { text } from "stream/consumers"
-import { ChatMessage, useSidebar } from "../use-sidebar"
+
+import { Mic, SendIcon } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+
 import { aiChat, streamText } from "@/lib/aiChat"
 import { toast } from "@/hooks/use-toast"
+import { useMessages, ChatMessage } from "@/hooks/use-messages"
+import { useModels } from "@/hooks/use-models"
 
 const ChatFooter = () => {
   const textarea = useRef<HTMLTextAreaElement>(null)
   const [message, setMessage] = useState("")
 
-  const isGenerating = useSidebar((s) => s.isGenerating)
-  const messages = useSidebar((s) => s.messages)
-  const model = useSidebar((s) => s.currentModel)
-  const setChatMessage = useSidebar((s) => s.setMessage)
-  const updateLastMessage = useSidebar((s) => s.updateLastMessage)
+  const isGenerating = useMessages((s) => s.isGenerating)
+  const messages = useMessages((s) => s.messages)
+  const setChatMessage = useMessages((s) => s.setMessage)
+  const updateLastMessage = useMessages((s) => s.updateLastMessage)
+  const model = useModels((s) => s.currentModel)
 
   useEffect(() => {
     textarea?.current?.focus()

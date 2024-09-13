@@ -8,6 +8,7 @@ import "./MessageBubble.css"
 
 // import prism from "remark-prism"
 import { PropsWithChildren } from "react"
+import { useModels } from "@/hooks/use-models"
 
 const Code = ({ children }: PropsWithChildren) => {
   return (
@@ -29,7 +30,7 @@ const userStyle = "w-fit dark:bg-blue-700 text-zinc-50 text-left"
 const aiStyle = "bg-zinc mr-auto dark:bg-slate-700 text-zinc-50"
 
 const MessageBubble = ({ role, content, date }: ChatMessage) => {
-  const model = useSidebar((s) => s.currentModel)
+  const model = useModels((s) => s.currentModel)
   return (
     <motion.div
       className={`message-bubble flex flex-col mt-8 gap-2 justify-start max-w-[100%] overflow-hidden ${

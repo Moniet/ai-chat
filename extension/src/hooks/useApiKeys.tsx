@@ -4,11 +4,24 @@ import { API_KEYS } from "../types/api-keys"
 
 const getApiKeys = () => storage.getVal<API_KEYS>("API_KEYS")
 
-export const useApiKeys = () => {
+type UseApiKeyProps = {
+  apiStorageKey?: string
+}
+
+export const saveApiKey = async (key: string, value: string) => {
+  const apiKeys = (await storage.getVal("API_KEYS")) ?? []
+  storage.setVal("API_KEYS", {
+    ...apiKeys,
+    [key]: value
+  })
+}
+
+export const useApiKeys = ({ apiStorageKey }: UseApiKeyProps) => {
   const { data: apiKeys, isLoading } = useSWR(getApiKeys)
 
   return {
-    apiKeys,
+    apiKeys:
+      apiKeys && apiStorageKey ? (apiKeys[apiStorageKey] as string) : apiKeys,
     isLoading
   }
 }

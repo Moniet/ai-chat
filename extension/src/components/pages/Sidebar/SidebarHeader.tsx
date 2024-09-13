@@ -8,23 +8,24 @@ import {
 import { useSidebar } from "./use-sidebar"
 import { CogIcon, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "@/hooks/use-theme"
+import { useModels } from "@/hooks/use-models"
 
 const SidebarHeader = () => {
-  const models = useSidebar((s) => s.modelList)
-  const currentModel = useSidebar((s) => s.currentModel)
+  const models = useModels((s) => s.selectedModels)
+  const currentModel = useModels((s) => s.currentModel)
   // const setModel = useSidebar(s => s.se)
   const { theme, setTheme } = useTheme()
 
   return (
     <div className="flex h-[70px] sticky top-0 left-0 items-center w-full p-5 justify-between dark:border-b dark:border-b-slate-800">
-      <Select value={currentModel.value} onValueChange={(e) => {}}>
+      <Select value={currentModel.modelId} onValueChange={(e) => {}}>
         <SelectTrigger className="w-fit min-w-[120px] ">
           <SelectValue placeholder="Select a model" />
         </SelectTrigger>
         <SelectContent className="w-fit dark:bg-slate-800">
           {models.map((model) => (
-            <SelectItem value={model.value} key={model.id}>
-              <span className="!text-xs">{model.label}</span>
+            <SelectItem value={model.modelId} key={model.id}>
+              <span className="!text-xs">{model.name}</span>
             </SelectItem>
           ))}
         </SelectContent>

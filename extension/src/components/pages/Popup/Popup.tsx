@@ -4,10 +4,7 @@ import { storage } from "@/lib/storage"
 import { API_KEYS } from "@/types/api-keys"
 import { useEffect, useState } from "react"
 import CaptureKeys from "./CaptureKeys"
-import * as ReactDOM from "react-dom"
-
 import "@/index.css"
-import { createRoot } from "react-dom/client"
 
 const Popup = () => {
   const [hasKey, setHasKeys] = useState(false)

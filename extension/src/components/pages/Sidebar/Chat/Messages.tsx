@@ -1,11 +1,11 @@
 import { ScrollArea } from "@/components/design-system/scroll-area"
-import React, { useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef, useCallback } from "react"
 import { useSidebar } from "../use-sidebar"
 import MessageBubble from "./MessageBubble"
-import { motion } from "framer-motion"
+import { useMessages } from "@/hooks/use-messages"
 
 const Messages = () => {
-  const messages = useSidebar((s) => s.messages)
+  const messages = useMessages((s) => s.messages)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const isScrolledToBottomRef = useRef(true)
 
