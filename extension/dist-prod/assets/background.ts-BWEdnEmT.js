@@ -1,0 +1,1 @@
+const a=async()=>{chrome.commands.onCommand.addListener(async e=>{if(e==="toggle-sidebar"){const[o]=await chrome.tabs.query({active:!0,lastFocusedWindow:!0});o.id?chrome.tabs.sendMessage(o.id,{type:"inject-sidebar"}):console.log("no tab")}}),chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:!0}).catch(e=>console.error(e))};a();

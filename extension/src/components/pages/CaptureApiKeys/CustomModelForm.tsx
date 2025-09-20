@@ -292,7 +292,7 @@ const CustomModelForm = ({ initialData }: { initialData?: ChatModel }) => {
           </div>
           <div className="pt-4">
             <Button type="submit" size="sm">
-              {initialData ? "Update" : "Save"}
+              {initialData ? "Update" : "Add Model"}
             </Button>
           </div>
         </form>

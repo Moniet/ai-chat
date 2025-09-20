@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useMemo, useState } from "react"
-import { baseModels } from "./baseModels"
+import { baseModels } from "../../../lib/baseModels"
 import { GPTIcon } from "./GPTIcon"
 import { Label } from "@/components/design-system/label"
 import { Input } from "@/components/design-system/input"

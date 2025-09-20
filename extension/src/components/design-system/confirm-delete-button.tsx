@@ -1,8 +1,6 @@
 import { useRef, useState } from "react"
 import { Button } from "./button"
 import { useClickAway } from "@uidotdev/usehooks"
-import { motion } from "framer-motion"
-import clsx from "clsx"
 import { cn } from "@/lib/utils"
 import { CheckIcon, Trash, Trash2 } from "lucide-react"
 

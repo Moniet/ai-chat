@@ -1,7 +1,7 @@
 import { Button } from "@/components/design-system/button"
 import { storage } from "@/lib/storage"
 
-import { Mic, SendIcon } from "lucide-react"
+import { Loader, Mic, SendIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { aiChat, streamText } from "@/lib/aiChat"
@@ -14,10 +14,12 @@ const ChatFooter = () => {
   const [message, setMessage] = useState("")
 
   const isGenerating = useMessages((s) => s.isGenerating)
+  const setIsGenerating = useMessages((s) => s.setIsGenerating)
   const messages = useMessages((s) => s.messages)
   const setChatMessage = useMessages((s) => s.setMessage)
   const updateLastMessage = useMessages((s) => s.updateLastMessage)
   const model = useModels((s) => s.currentModel)
+  const controller = useRef<AbortController>(new AbortController())
 
   useEffect(() => {
     textarea?.current?.focus()
@@ -71,9 +73,13 @@ const ChatFooter = () => {
 
     setChatMessage(nextMessage)
 
-    const stream = await aiChat(model, {
-      messages: [...messages, nextMessage]
-    }).catch((err) => {
+    const stream = await aiChat(
+      model,
+      {
+        messages: [...messages, nextMessage]
+      },
+      controller.current.signal
+    ).catch((err) => {
       console.error(err)
       toast({
         title: "Error generating text",
@@ -82,6 +88,8 @@ const ChatFooter = () => {
       })
       return null
     })
+
+    console.log({ stream })
 
     if (!stream) {
       return
@@ -98,13 +106,27 @@ const ChatFooter = () => {
       content: "loading...",
       date: new Date().toISOString()
     })
-    await streamText(stream as any, (text: string) => {
-      updateLastMessage({
-        ...data,
-        role: "assistant",
-        content: text
-      })
-    })
+
+    setIsGenerating(true)
+
+    controller.current = new AbortController()
+
+    try {
+      await streamText(
+        model.apiStorageKey,
+        stream as any,
+        (text: string) => {
+          updateLastMessage({
+            ...data,
+            role: "assistant",
+            content: text
+          })
+        },
+        controller.current.signal
+      )
+    } finally {
+      setIsGenerating(false)
+    }
 
     setMessage("")
     storage.setVal("typed-message" as any, "")
@@ -153,19 +175,34 @@ const ChatFooter = () => {
               <Mic className="size-4" />
             </Button>
           </div>
-          <Button
-            className="size-6 max-h-[40px] p-1"
-            aria-label="Send Message"
-            size="sm"
-            variant={"outline"}
-            onClick={(e) => {
-              e.preventDefault()
-              handleSend()
-            }}
-            disabled={isGenerating}
-          >
-            <SendIcon className="size-4 " />
-          </Button>
+          {!isGenerating && (
+            <Button
+              className="size-6 max-h-[40px] p-1"
+              aria-label="Send Message"
+              size="sm"
+              variant={"outline"}
+              onClick={(e) => {
+                e.preventDefault()
+                handleSend()
+              }}
+              disabled={isGenerating}
+            >
+              <SendIcon className="size-4 " />
+            </Button>
+          )}
+          {isGenerating && (
+            <Button
+              className="size-6 max-h-[40px] p-1"
+              aria-label="Send Message"
+              size="sm"
+              variant={"outline"}
+              onClick={() => {
+                controller.current.abort()
+              }}
+            >
+              <Loader className="size-4 animate-spin" />
+            </Button>
+          )}
         </div>
       </div>
     </div>

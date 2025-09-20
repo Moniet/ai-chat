@@ -1,6 +1,5 @@
 import { ScrollArea } from "@/components/design-system/scroll-area"
 import { useEffect, useRef, useCallback } from "react"
-import { useSidebar } from "../use-sidebar"
 import MessageBubble from "./MessageBubble"
 import { useMessages } from "@/hooks/use-messages"
 
@@ -41,11 +40,13 @@ const Messages = () => {
     scrollToBottom()
   }, [messages, scrollToBottom])
 
+  const renderMessages = messages.map((m) => (
+    <MessageBubble key={m.date} {...m} />
+  ))
+
   return (
     <ScrollArea className="w-full max-h-full p-5 flex-1" ref={scrollAreaRef}>
-      {messages.map((m) => (
-        <MessageBubble key={m.date} {...m} />
-      ))}
+      <div>{renderMessages}</div>
     </ScrollArea>
   )
 }

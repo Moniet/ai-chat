@@ -55,8 +55,8 @@ const removeVal = async (key: StorageKeys) => {
 }
 
 type SubCallback = (
-  changes: { [key: string]: chrome.storage.StorageChange }, // eslint-disable-line
-  areaName: "sync" | "local" | "managed" | "session" // eslint-disable-line
+  changes: { [key: string]: chrome.storage.StorageChange },  
+  areaName: "sync" | "local" | "managed" | "session"  
 ) => void
 
 const subscribe = (fn: SubCallback) => chrome.storage.onChanged.addListener(fn)

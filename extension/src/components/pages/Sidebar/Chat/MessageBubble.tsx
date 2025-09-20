@@ -1,4 +1,3 @@
-import { ChatMessage, useSidebar } from "../use-sidebar"
 import clsx from "clsx"
 import { motion } from "framer-motion"
 import Markdown from "react-markdown"
@@ -9,6 +8,8 @@ import "./MessageBubble.css"
 // import prism from "remark-prism"
 import { PropsWithChildren } from "react"
 import { useModels } from "@/hooks/use-models"
+import { ChatMessage } from "@/hooks/use-messages"
+import { BotIcon } from "lucide-react"
 
 const Code = ({ children }: PropsWithChildren) => {
   return (
@@ -31,6 +32,8 @@ const aiStyle = "bg-zinc mr-auto dark:bg-slate-700 text-zinc-50"
 
 const MessageBubble = ({ role, content, date }: ChatMessage) => {
   const model = useModels((s) => s.currentModel)
+  const icon = model.icon
+
   return (
     <motion.div
       className={`message-bubble flex flex-col mt-8 gap-2 justify-start max-w-[100%] overflow-hidden ${
@@ -52,7 +55,7 @@ const MessageBubble = ({ role, content, date }: ChatMessage) => {
       >
         {role === "assistant" && (
           <div className="size-[34px] aspect-square p-[5px] mr-2 border dark:border-slate-700 rounded-full w-fit flex dark:text-zinc-50 text-slate-900">
-            {model.icon}
+            {<BotIcon className="size-5" />}
           </div>
         )}
         <div className="max-w-[80vw] overflow-hidden">

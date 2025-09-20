@@ -3,15 +3,17 @@ import DefaultProviders from "./DefaultProviders"
 import Gutter from "@/components/design-system/gutter"
 import ExtensionHeader from "@/components/shared/extension-header"
 import { ScrollArea } from "@/components/design-system/scroll-area"
-import { Button } from "@/components/design-system/button"
-import { Pencil } from "lucide-react"
 import CustomModelForm from "./CustomModelForm"
 import { Separator } from "@/components/design-system/separator"
 import { useModels } from "@/hooks/use-models"
 import CustomModelDisplay from "./CustomModelDisplay"
+import { Button } from "@/components/design-system/button"
+import { useNavigate, useNavigation, useNavigationType } from "react-router-dom"
 
 const CaptureApiKeys = () => {
   const customModels = useModels((s) => s.customModels)
+  const nav = useNavigate()
+
   return (
     <Layout>
       <ExtensionHeader />
@@ -36,10 +38,6 @@ const CaptureApiKeys = () => {
                 to learn everything you need to get started
               </p>
             </div>
-            <Button size="sm" variant={"outline"}>
-              <Pencil className="size-4 mr-2" />
-              Add new model
-            </Button>
             <div className="mt-5 space-y-5">
               {customModels?.map((m) => (
                 <CustomModelDisplay {...m} />
@@ -51,6 +49,10 @@ const CaptureApiKeys = () => {
           </div>
         </Gutter>
       </ScrollArea>
+      <div className="fixed bottom-0 left-0 w-full h-[70px] flex items-center  justify-end bg-slate-800/50 backdrop-blur-sm px-5 z-20">
+        <Button onClick={() => nav("/model-selection")}>Next</Button>
+      </div>
+      <div className="h-[80px] mt-5"></div>
     </Layout>
   )
 }

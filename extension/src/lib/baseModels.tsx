@@ -1,7 +1,7 @@
-import { ChatModel } from "@/hooks/use-models"
-import { AnthropicIcon } from "./AnthropicIcon"
-import GeminiIcon from "./GeminiIcon"
-import { GPTIcon } from "./GPTIcon"
+import { ChatModel } from "@/hooks/use-models";
+import { AnthropicIcon } from "../components/pages/CaptureApiKeys/AnthropicIcon";
+import GeminiIcon from "../components/pages/CaptureApiKeys/GeminiIcon";
+import { GPTIcon } from "../components/pages/CaptureApiKeys/GPTIcon";
 
 export const baseModels: Record<
   "OPENAI" | "GEMINI" | "ANTHROPIC",
@@ -17,7 +17,40 @@ export const baseModels: Record<
       contextLimit: 4096,
       name: "GPT-4o",
       modelId: "gpt-4o",
-      isSelected: true
+      isSelected: false,
+    },
+    {
+      id: "102133410",
+      apiStorageKey: "OPENAI",
+      baseUrl: "https://api.openai.com/v1",
+      capabilities: ["chat", "vision", "documents"],
+      icon: <GPTIcon />,
+      contextLimit: 4096,
+      name: "GPT-5",
+      modelId: "gpt-5",
+      isSelected: true,
+    },
+    {
+      id: "1123",
+      apiStorageKey: "OPENAI",
+      baseUrl: "https://api.openai.com/v1",
+      capabilities: ["chat", "vision", "documents"],
+      icon: <GPTIcon />,
+      contextLimit: 4096,
+      name: "GPT-5-mini",
+      modelId: "gpt-5-mini",
+      isSelected: false,
+    },
+    {
+      id: "141432",
+      apiStorageKey: "OPENAI",
+      baseUrl: "https://api.openai.com/v1",
+      capabilities: ["chat", "vision", "documents"],
+      icon: <GPTIcon />,
+      contextLimit: 4096,
+      name: "GPT-4.1",
+      modelId: "gpt-4.1-2025-04-14",
+      isSelected: true,
     },
     {
       id: "102",
@@ -28,7 +61,7 @@ export const baseModels: Record<
       contextLimit: 4096,
       name: "GPT-4o Mini",
       modelId: "gpt-4o-mini",
-      isSelected: true
+      isSelected: true,
     },
     {
       id: "103",
@@ -38,7 +71,7 @@ export const baseModels: Record<
       icon: <GPTIcon />,
       contextLimit: 4096,
       name: "GPT-4 Turbo",
-      modelId: "gpt-4-turbo"
+      modelId: "gpt-4-turbo",
     },
     {
       id: "104",
@@ -49,7 +82,7 @@ export const baseModels: Record<
       contextLimit: 4096,
       name: "GPT-4",
       modelId: "gpt-4",
-      isSelected: true
+      isSelected: true,
     },
     {
       id: "105",
@@ -59,8 +92,8 @@ export const baseModels: Record<
       icon: <GPTIcon />,
       contextLimit: 4096,
       name: "GPT-3.5 Turbo",
-      modelId: "gpt-3.5-turbo"
-    }
+      modelId: "gpt-3.5-turbo",
+    },
   ],
   ANTHROPIC: [
     {
@@ -71,7 +104,7 @@ export const baseModels: Record<
       icon: <AnthropicIcon />,
       contextLimit: 4096,
       name: "Claude Sonnet 3.5",
-      modelId: "claude-3-5-sonnet-20240620"
+      modelId: "claude-3-5-sonnet-20240620",
     },
     {
       id: "201",
@@ -81,7 +114,7 @@ export const baseModels: Record<
       icon: <AnthropicIcon />,
       contextLimit: 4096,
       name: "Claude 3 Opus",
-      modelId: "claude-3-opus-20240229"
+      modelId: "claude-3-opus-20240229",
     },
     {
       id: "203",
@@ -91,8 +124,8 @@ export const baseModels: Record<
       icon: <AnthropicIcon />,
       contextLimit: 4096,
       name: "Claude 3 Haiku",
-      modelId: "claude-3-haiku-20240307"
-    }
+      modelId: "claude-3-haiku-20240307",
+    },
   ],
   GEMINI: [
     {
@@ -103,7 +136,7 @@ export const baseModels: Record<
       icon: <GeminiIcon />,
       contextLimit: 4096,
       name: "Gemini 1.5 Pro",
-      modelId: "gemini-1.5-pro"
+      modelId: "gemini-1.5-pro",
     },
     {
       id: "332",
@@ -113,7 +146,7 @@ export const baseModels: Record<
       icon: <GeminiIcon />,
       contextLimit: 4096,
       name: "Gemini 1.0 Pro",
-      modelId: "gemini-1.0-pro"
+      modelId: "gemini-1.0-pro",
     },
     {
       id: "333",
@@ -123,7 +156,7 @@ export const baseModels: Record<
       icon: <GeminiIcon />,
       contextLimit: 4096,
       name: "Gemini 1.5 Flash",
-      modelId: "gemini-1.5-flash"
-    }
-  ]
-}
+      modelId: "gemini-1.5-flash",
+    },
+  ],
+};

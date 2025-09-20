@@ -6,6 +6,8 @@ import "../../../index.css"
 import { StrictMode } from "react"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import CaptureApiKeys from "../CaptureApiKeys/CaptureApiKeys"
+import ModelSelection from "../ModelSelection/ModelSelection"
+import { Toaster } from "@/components/design-system/toaster"
 
 // const Redirect = ({ children }: PropsWithChildren) => {
 //   const nav = useNavigate()
@@ -23,10 +25,13 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider>
       <MemoryRouter>
         <Routes>
-          {/* <Route element={<Sidebar />} path="/" /> */}
-          <Route element={<CaptureApiKeys />} path="/" />
+          <Route element={<Sidebar />} path="/" />
+          <Route element={<Sidebar />} path="/chat" />
+          <Route element={<CaptureApiKeys />} path="/capture-keys" />
+          <Route path="/model-selection" element={<ModelSelection />} />
           <Route path="/sign-in" element={<div>sign in</div>} />
         </Routes>
+        <Toaster />
       </MemoryRouter>
     </ThemeProvider>
   </StrictMode>
